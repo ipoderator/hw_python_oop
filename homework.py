@@ -68,13 +68,6 @@ class Running(Training):
     CALORIES_MEAN_SPEED_MULTIPLIER: float = 18
     CALORIES_MEAN_SPEED_SHIFT: float = 1.79
 
-    def __init__(self,
-                 action: int,
-                 duration: float,
-                 weight: float
-                 ) -> None:
-        super().__init__(action, duration, weight)
-
     def get_spent_calories(self) -> float:
         average_speed: float = self.get_mean_speed()
         return ((
@@ -149,9 +142,9 @@ def read_package(workout_type: str, data: list) -> Training:
         if workout_type in trainings:
             return trainings[workout_type](*data)
     except KeyError:
-        raise ('Переданы несоответствующее аргументы')
+        return ('Переданы несоответствующее аргументы')
     except ValueError:
-        raise ('Передан несуществующий тип тренировки')
+        return ('Передан несуществующий тип тренировки')
 
 
 def main(training: Training) -> None:
