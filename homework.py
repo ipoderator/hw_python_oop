@@ -142,9 +142,14 @@ def read_package(workout_type: str, data: list) -> Training:
         if workout_type in trainings:
             return trainings[workout_type](*data)
     except KeyError:
-        return ('Переданы несоответствующее аргументы')
+        raise KeyError
     except ValueError:
-        return ('Передан несуществующий тип тренировки')
+        raise ValueError
+
+
+"""Если честно не до конца понимаю,
+что делаю. Почему нельзя передавать текст?
+Потому что функция 'main' не принимает строку?"""
 
 
 def main(training: Training) -> None:
