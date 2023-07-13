@@ -139,17 +139,14 @@ def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     trainings = {'RUN': Running, 'SWM': Swimming, 'WLK': SportsWalking}
     try:
-        if workout_type in trainings:
-            return trainings[workout_type](*data)
-    except KeyError:
-        raise KeyError
+        return trainings[workout_type](*data)
     except ValueError:
-        raise ValueError
+        raise ValueError('Переданы несоответствующее аргументы')
+    except KeyError:
+        raise KeyError('Передан несуществующий тип тренировки')
 
 
-"""Если честно не до конца понимаю,
-что делаю. Почему нельзя передавать текст?
-Потому что функция 'main' не принимает строку?"""
+"""Теперь стало более понято, спасибо большое"""
 
 
 def main(training: Training) -> None:
